@@ -1,41 +1,23 @@
 package tp02.ejercicio3;
 
-import tp02.ejercicio2.NodoGenerico;
+import tp02.ejercicio2.ListaEnlazadaGenerica;
+import tp02.ejercicio2.ListaGenerica;
 
 public class PilaGenerica<T> {
-	private NodoGenerico<T> frente;
+	private ListaGenerica<T> datos = new ListaEnlazadaGenerica<T>();
 	
 	public void apilar(T elem) {
-		NodoGenerico<T> aux = new NodoGenerico<T>();
-		aux.setDato(elem);
-		if(this.frente == null) {
-			aux.setSiguiente(null);
-			frente = aux;
-		}else {
-			aux.setSiguiente(frente);
-			frente = aux;
-		}
+		datos.agregarInicio(elem);
 	}
 	public T desapilar() {
-		if(!esVacia()) {
-			T elem = frente.getDato();
-			frente = frente.getSiguiente();
-			return elem;
-		}else {
-			return null;
-		}
+		T e = this.tope();
+		datos.eliminarEn(1);
+		return e;
 	}
 	public T tope() {
-		if(esVacia()) {
-			return null;
-		}else {
-			NodoGenerico<T> n = frente;
-			frente = frente.getSiguiente();
-			return n.getDato();
-		}
+		return datos.elemento(1);
 	}
 	public boolean esVacia() {
-		if (this.frente == null) return true;
-		else return false;
+		return datos.esVacia();
 	}
 }

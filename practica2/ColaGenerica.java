@@ -2,40 +2,20 @@ package tp02.ejercicio3;
 import tp02.ejercicio2.*;
 
 public class ColaGenerica<T> {
-	private NodoGenerico<T> frente;
-	private NodoGenerico<T> fin;
+	private ListaGenerica<T> datos = new ListaEnlazadaGenerica<T>();
 	
 	public void encolar(T elem) {
-		NodoGenerico<T> aux = new NodoGenerico<T>();
-		aux.setDato(elem);
-		if(this.esVacia()) {
-			this.frente= aux;
-			this.fin= aux;
-		}else {
-			fin.setSiguiente(aux);;
-			this.fin= aux;
-		}
-		
+		datos.agregarFinal(elem);
 	}
 	public T desencolar() {
-		if(!this.esVacia()) {
-			T elem = frente.getDato();
-			if(frente == fin) {
-				frente = null;
-				fin = null;
-			}else {
-				frente = frente.getSiguiente();
-			}
-			return elem;
-		}else {
-			return null;
-		}
+		T e = this.tope();
+		datos.eliminarEn(1);
+		return e;
 	}
 	public T tope() {
-		return fin.getDato();
+		return datos.elemento(1);
 	}
 	public boolean esVacia() {
-		if (this.frente == null) return true;
-		else return false;
+		return datos.esVacia();
 	}
 }

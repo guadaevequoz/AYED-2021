@@ -8,7 +8,7 @@ import tp02.ejercicio3.PilaGenerica;
 
 public class TestBalanceo {
 	
-	private static boolean esBalancedo(String expr) {
+	private static boolean esBalanceado(String expr) {
 		ListaGenerica<Character> apertura = new ListaEnlazadaGenerica<Character>();
 		apertura.agregarFinal('(');
 		apertura.agregarFinal('[');
@@ -29,7 +29,7 @@ public class TestBalanceo {
 				pila.apilar(actual);
 			else {
 				elem = pila.desapilar();
-				if(apertura.posicion(elem) != cierre.posicion(actual))
+				if(apertura.elemento(elem) != cierre.elemento(actual))
 					return false;
 			}
 		}
